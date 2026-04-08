@@ -1,14 +1,16 @@
-from runpod.serverless import start
+import runpod
 from comfyui_handler import ComfyUIHandler
 
+# Initialize the handler with your workflow
 handler = ComfyUIHandler(
-    workflow_path="workflow.json",   # or the exact name of your full-graph JSON in the repo
+    workflow_path="workflow.json",   # Make sure this matches the exact filename in your repo
     input_mapping={
-        "character_ref": "76.inputs.image",      # node 76 LoadImage
-        "clothing_image": "81.inputs.image",     # node 81 LoadImage
-        "prompt": "135.inputs.text",             # node 135 CLIPTextEncode
-        "num_images": "129.inputs.batch_size"    # node 129 EmptyFlux2LatentImage
+        "character_ref": "76.inputs.image",      # Node 76 - Character reference
+        "clothing_image": "81.inputs.image",     # Node 81 - Clothing image
+        "prompt": "135.inputs.text",             # Node 135 - Prompt
+        "num_images": "129.inputs.batch_size"    # Node 129 - Batch size
     }
 )
 
-start(handler)
+# Start the RunPod Serverless handler
+runpod.serverless.start(handler)
