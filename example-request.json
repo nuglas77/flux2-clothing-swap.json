@@ -1,0 +1,304 @@
+{
+  "input": {
+    "workflow": {
+      "76": {
+        "inputs": {
+          "image": "reference_influencer_0002.png"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "81": {
+        "inputs": {
+          "image": "western_dress.webp"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "94": {
+        "inputs": {
+          "filename_prefix": "Flux2_Klein_9b_kv",
+          "images": [
+            "124",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "SaveImage"
+        }
+      },
+      "122": {
+        "inputs": {
+          "text": "euler"
+        },
+        "class_type": "KSamplerSelect",
+        "_meta": {
+          "title": "KSamplerSelect"
+        }
+      },
+      "123": {
+        "inputs": {
+          "noise": [
+            "125",
+            0
+          ],
+          "guider": [
+            "138",
+            0
+          ],
+          "sampler": [
+            "122",
+            0
+          ],
+          "sigmas": [
+            "137",
+            0
+          ],
+          "latent_image": [
+            "129",
+            0
+          ]
+        },
+        "class_type": "SamplerCustomAdvanced",
+        "_meta": {
+          "title": "SamplerCustomAdvanced"
+        }
+      },
+      "124": {
+        "inputs": {
+          "samples": [
+            "123",
+            0
+          ],
+          "vae": [
+            "127",
+            0
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "125": {
+        "inputs": {
+          "value": 75164988103203
+        },
+        "class_type": "RandomNoise",
+        "_meta": {
+          "title": "RandomNoise"
+        }
+      },
+      "126": {
+        "inputs": {
+          "filename": "flux-2-klein-9b-kv-fp8.safetensors"
+        },
+        "class_type": "UNETLoader",
+        "_meta": {
+          "title": "UNETLoader"
+        }
+      },
+      "127": {
+        "inputs": {
+          "filename": "flux2-vae.safetensors"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+          "title": "VAELoader"
+        }
+      },
+      "128": {
+        "inputs": {
+          "image": [
+            "130",
+            0
+          ]
+        },
+        "class_type": "GetImageSize",
+        "_meta": {
+          "title": "GetImageSize"
+        }
+      },
+      "129": {
+        "inputs": {
+          "value": 1024,
+          "width": [
+            "128",
+            0
+          ],
+          "height": [
+            "128",
+            1
+          ]
+        },
+        "class_type": "EmptyFlux2LatentImage",
+        "_meta": {
+          "title": "EmptyFlux2LatentImage"
+        }
+      },
+      "130": {
+        "inputs": {
+          "text": "lanczos",
+          "image": [
+            "76",
+            0
+          ]
+        },
+        "class_type": "ImageScaleToTotalPixels",
+        "_meta": {
+          "title": "ImageScaleToTotalPixels"
+        }
+      },
+      "131": {
+        "inputs": {
+          "text": "lanczos",
+          "image": [
+            "81",
+            0
+          ]
+        },
+        "class_type": "ImageScaleToTotalPixels",
+        "_meta": {
+          "title": "ImageScaleToTotalPixels"
+        }
+      },
+      "132": {
+        "inputs": {
+          "conditioning": [
+            "134",
+            0
+          ],
+          "conditioning_1": [
+            "134",
+            1
+          ],
+          "pixels": [
+            "131",
+            0
+          ],
+          "vae": [
+            "127",
+            0
+          ]
+        },
+        "class_type": "93041a64-452a-477a-9447-40330b7c1136",
+        "_meta": {
+          "title": "93041a64-452a-477a-9447-40330b7c1136"
+        }
+      },
+      "133": {
+        "inputs": {
+          "filename": "qwen_3_8b_fp8mixed.safetensors"
+        },
+        "class_type": "CLIPLoader",
+        "_meta": {
+          "title": "CLIPLoader"
+        }
+      },
+      "134": {
+        "inputs": {
+          "conditioning": [
+            "135",
+            0
+          ],
+          "conditioning_1": [
+            "685",
+            0
+          ],
+          "pixels": [
+            "130",
+            0
+          ],
+          "vae": [
+            "127",
+            0
+          ]
+        },
+        "class_type": "27eacb9f-0da2-421d-a0bf-b4b4e5fe5709",
+        "_meta": {
+          "title": "27eacb9f-0da2-421d-a0bf-b4b4e5fe5709"
+        }
+      },
+      "135": {
+        "inputs": {
+          "text": "Have the woman in Figure 1 put on the clothes from Figure 2, no jeans and no hat.",
+          "clip": [
+            "133",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIP Text Encode (Positive Prompt)"
+        }
+      },
+      "137": {
+        "inputs": {
+          "value": 4,
+          "width": [
+            "128",
+            0
+          ],
+          "height": [
+            "128",
+            1
+          ]
+        },
+        "class_type": "Flux2Scheduler",
+        "_meta": {
+          "title": "Flux2Scheduler"
+        }
+      },
+      "138": {
+        "inputs": {
+          "value": 1,
+          "model": [
+            "139",
+            0
+          ],
+          "positive": [
+            "132",
+            0
+          ],
+          "negative": [
+            "132",
+            1
+          ]
+        },
+        "class_type": "CFGGuider",
+        "_meta": {
+          "title": "CFGGuider"
+        }
+      },
+      "139": {
+        "inputs": {
+          "model": [
+            "126",
+            0
+          ]
+        },
+        "class_type": "FluxKVCache",
+        "_meta": {
+          "title": "FluxKVCache"
+        }
+      },
+      "685": {
+        "inputs": {
+          "conditioning": [
+            "135",
+            0
+          ]
+        },
+        "class_type": "ConditioningZeroOut",
+        "_meta": {
+          "title": "ConditioningZeroOut"
+        }
+      }
+    }
+  }
+}
